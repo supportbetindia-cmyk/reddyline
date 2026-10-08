@@ -1,0 +1,826 @@
+@import "tailwindcss";
+
+@source "../app";
+@source "../lib";
+
+
+
+
+
+:root {
+  /* iOS safe area env variables */
+  --sat: env(safe-area-inset-top);
+  --sab: env(safe-area-inset-bottom);
+  --navbar-height: 70px;
+  --navbar-offset: calc(var(--navbar-height) + env(safe-area-inset-top, 0px));
+  --page-gutter: 5%;
+  --page-max-width: 1400px;
+}
+
+body {
+  /* Apply safe areas once; padding both html and body doubles the inset on phones. */
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+:root {
+  /* ── Luxury palette (single source of truth) ──────────────
+     Timeless premium betting: deep near-black surfaces, gold used
+     purely as an accent, restrained success/danger signals. */
+  --gold: #D4AF37;
+  /* primary gold */
+  --gold-dim: #C5A059;
+  --gold-light: #F4D06F;
+  /* secondary gold */
+  --gold-dark: #9A7B38;
+  --gold-glow: rgba(212, 175, 55, 0.22);
+  --gold-gradient: linear-gradient(135deg, #9A7B38 0%, #C5A059 28%, #F4D06F 62%, #D4AF37 100%);
+  --gold-sheen: linear-gradient(135deg, #B8860B 0%, #D4AF37 35%, #F4D06F 60%, #D4AF37 100%);
+
+  /* Kept for legacy red CTAs — retuned to the luxury danger red so
+     the whole system stays cohesive. */
+  --red: #E74C3C;
+  --red-gradient: linear-gradient(135deg, #A02820 0%, #E74C3C 55%, #F16453 100%);
+  --danger: #E74C3C;
+  --green: #27AE60;
+  --success: #27AE60;
+
+  --bg: #090909;
+  /* primary background */
+  --bg2: #121212;
+  /* secondary background */
+  --bg3: #181818;
+  --card: #181818;
+  /* card surface */
+  --card2: #202020;
+  --border: rgba(212, 175, 55, 0.15);
+  --border-soft: rgba(255, 255, 255, 0.06);
+  --border-bright: rgba(244, 208, 111, 0.35);
+  --text: #FFFFFF;
+  --muted: #BDBDBD;
+  --white: #ffffff;
+
+  /* System tokens for a consistent, breathable rhythm */
+  --radius: 16px;
+  --radius-lg: 22px;
+  --radius-sm: 10px;
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --shadow-card: 0 24px 60px -24px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  --shadow-card-hover: 0 34px 80px -22px rgba(0, 0, 0, 0.92), 0 0 0 1px rgba(212, 175, 55, 0.18), 0 0 40px -10px rgba(212, 175, 55, 0.12);
+  --shadow-gold: 0 10px 30px -10px rgba(212, 175, 55, 0.35);
+}
+
+@theme {
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold-light);
+  --color-gold-dim: var(--gold-dim);
+  --color-gold-glow: var(--gold-glow);
+  --color-red: var(--red);
+  --color-danger: var(--danger);
+  --color-green: var(--green);
+  --color-success: var(--success);
+  --color-bg: var(--bg);
+  --color-bg2: var(--bg2);
+  --color-bg3: var(--bg3);
+  --color-card: var(--card);
+  --color-card2: var(--card2);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-border-bright: var(--border-bright);
+  --color-text: var(--text);
+  --color-muted: var(--muted);
+
+  --font-bebas: var(--font-oswald), "Arial Narrow", sans-serif;
+  --font-display: var(--font-oswald), "Arial Narrow", sans-serif;
+  --font-syne: var(--font-manrope), Arial, sans-serif;
+  --font-dm: var(--font-manrope), Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.motion-line {
+  display: block;
+  overflow: hidden;
+  perspective: 700px;
+}
+
+.motion-word {
+  display: inline-block;
+  transform-origin: 50% 100%;
+}
+
+.motion-word-gold {
+  color: var(--gold-light, #f2d47c);
+}
+
+[data-home-reveal] {
+  opacity: 0;
+  transform: translateY(34px);
+  transition: opacity .85s cubic-bezier(.16, 1, .3, 1), transform .85s cubic-bezier(.16, 1, .3, 1);
+}
+
+[data-home-reveal].home-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+[data-home-tilt] {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  transform-style: preserve-3d;
+  transform: perspective(1100px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform .18s ease-out, opacity .85s cubic-bezier(.16, 1, .3, 1);
+}
+
+[data-home-reveal][data-home-tilt]:not(.home-visible) {
+  transform: perspective(1100px) translateY(34px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-home-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* Lenis smooth scroll — when JS is active it adds these classes to <html>.
+   While Lenis drives the scroll, native smooth-behaviour is turned off so the
+   two don't fight. Falls back to CSS smooth scroll if JS is disabled. */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  font-family: var(--font-dm);
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+*,
+*::before,
+*::after {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* SHIMMER ANIMATION */
+@keyframes shimmer-sweep {
+  0% {
+    transform: translateX(-100%) rotate(25deg);
+  }
+
+  100% {
+    transform: translateX(250%) rotate(25deg);
+  }
+}
+
+/* BUTTONS */
+.btn,
+.btn-2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 13px 30px;
+  border-radius: 10px;
+  font-family: var(--font-syne);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+  border: none;
+  position: relative;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.btn-2 {
+  font-weight: 600;
+}
+
+.btn-ghost {
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--gold-light);
+  border: 1px solid var(--border);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+}
+
+.btn-ghost:hover {
+  color: #0A0A0A;
+  border-color: transparent;
+  background: var(--gold-sheen);
+  box-shadow: var(--shadow-gold);
+  transform: translateY(-2px);
+}
+
+.btn-gold {
+  background: var(--gold-sheen);
+  color: #0A0A0A;
+  font-weight: 800;
+  box-shadow: 0 6px 22px -6px rgba(212, 175, 55, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+/* Slow, expensive shimmer sweep across gold buttons */
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -60%;
+  width: 55%;
+  height: 200%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
+  transform: rotate(25deg);
+  animation: shimmer-sweep 4.5s infinite;
+  pointer-events: none;
+}
+
+.btn-gold:hover {
+  background: linear-gradient(135deg, #C5A059 0%, #F4D06F 45%, #FFF2C6 65%, #D4AF37 100%);
+  box-shadow: 0 12px 34px -8px rgba(212, 175, 55, 0.6), 0 0 18px rgba(244, 208, 111, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transform: translateY(-3px);
+}
+
+.btn-red {
+  background: var(--red-gradient);
+  color: var(--white);
+  box-shadow: 0 6px 22px -8px rgba(231, 76, 60, 0.4);
+}
+
+.btn-red:hover {
+  background: linear-gradient(135deg, #B5342A 0%, #F16453 55%, #F58174 100%);
+  box-shadow: 0 12px 32px -8px rgba(231, 76, 60, 0.5);
+  transform: translateY(-3px);
+}
+
+.btn-large {
+  padding: 17px 38px;
+  font-size: 14px;
+}
+
+/* LUXURY CARDS */
+.card-luxury {
+  background:
+    radial-gradient(120% 100% at 50% 0%, rgba(212, 175, 55, 0.06), transparent 55%),
+    linear-gradient(160deg, #1c1c1c 0%, #141414 100%);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-card);
+  transition: transform 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color 0.5s var(--ease);
+  border-radius: var(--radius);
+  will-change: transform;
+}
+
+.card-luxury:hover {
+  transform: translateY(-8px);
+  border-color: var(--border);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* GLASS CARDS — used by Hero quick-links & Features.
+   Previously undefined (rendered bare); now a proper luxury surface. */
+.card-glass {
+  position: relative;
+  background:
+    linear-gradient(160deg, rgba(255, 255, 255, 0.035) 0%, rgba(255, 255, 255, 0.012) 100%),
+    #141414;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius);
+  box-shadow: 0 18px 44px -22px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: transform 0.45s var(--ease), box-shadow 0.45s var(--ease), border-color 0.45s var(--ease);
+  will-change: transform;
+}
+
+.card-glass:hover {
+  border-color: var(--border);
+  box-shadow: 0 26px 60px -22px rgba(0, 0, 0, 0.95), 0 0 34px -12px rgba(212, 175, 55, 0.16);
+}
+
+/* TEXT GRADIENTS */
+.text-gold-gradient,
+.text-accent-gradient {
+  background: linear-gradient(135deg, #C5A059 0%, #F4D06F 38%, #FFF2C6 60%, #D4AF37 100%);
+  background-size: 140% 140%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* GOLD DIVIDER — refined section-to-section transition */
+.gold-divider {
+  height: 1px;
+  width: 100%;
+  border: none;
+  background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+}
+
+.gold-hairline {
+  background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.5), transparent);
+}
+
+/* DOT GRID — subtle luxury texture (Hero / Footer / Preloader) */
+.bg-dots {
+  background-image: radial-gradient(rgba(212, 175, 55, 0.16) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* FLOATING DECORATIVE OBJECTS — anti-gravity, never blocking content */
+.float-slow {
+  animation: float 9s ease-in-out infinite;
+}
+
+.float-slower {
+  animation: float 13s ease-in-out infinite;
+}
+
+.gold-orb {
+  border-radius: 9999px;
+  background: radial-gradient(circle at 35% 30%, #F7E39C, #D4AF37 45%, #9A7B38 100%);
+  box-shadow: 0 0 30px -4px rgba(212, 175, 55, 0.5), inset 0 -3px 8px rgba(0, 0, 0, 0.35), inset 0 3px 6px rgba(255, 255, 255, 0.4);
+}
+
+.section-tag {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.section-tag::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-light));
+}
+
+.section-title {
+  font-family: var(--font-bebas);
+  font-size: clamp(30px, 4.6vw, 54px);
+  letter-spacing: -0.5px;
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.section-desc {
+  font-size: 16px;
+  color: var(--muted);
+  max-width: 580px;
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+/* FLOATING ANIMATION */
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-12px) rotate(0.5deg);
+  }
+
+  75% {
+    transform: translateY(8px) rotate(-0.5deg);
+  }
+}
+
+/* PULSE */
+@keyframes pulse {
+
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: scale(1.5);
+  }
+}
+
+/* MARQUEE */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  from {
+    transform: translateX(-50%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* LIVE DOT */
+.live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+  margin-right: 6px;
+  animation: pulse 2s infinite;
+}
+
+/* CUSTOM SCROLLBAR */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.01);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(229, 193, 88, 0.4);
+}
+
+/* ============================================================
+   WORDPRESS ARTICLE CONTENT (.wp-content)
+   Styles the raw HTML returned by the WordPress REST API so it
+   matches the dark theme. Used on /blog/[slug].
+   ============================================================ */
+.wp-content {
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.85;
+}
+
+.wp-content>*+* {
+  margin-top: 1.15em;
+}
+
+.wp-content h1,
+.wp-content h2,
+.wp-content h3,
+.wp-content h4 {
+  color: var(--white);
+  font-family: var(--font-bebas);
+  font-weight: 700;
+  line-height: 1.25;
+  margin-top: 1.8em;
+  margin-bottom: 0.2em;
+}
+
+.wp-content h2 {
+  font-size: 1.7rem;
+}
+
+.wp-content h3 {
+  font-size: 1.35rem;
+}
+
+.wp-content h4 {
+  font-size: 1.1rem;
+}
+
+/* Offset anchor jumps from the Table of Contents so headings clear the fixed navbar */
+.wp-content h2,
+.wp-content h3 {
+  scroll-margin-top: 90px;
+}
+
+.wp-content a {
+  color: var(--gold-dim);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.wp-content a:hover {
+  color: var(--white);
+}
+
+.wp-content strong {
+  color: #e7ebf3;
+}
+
+.wp-content figure,
+.wp-content .wp-block-image {
+  width: 100%;
+  max-width: 100%;
+  margin: 1.4em 0;
+}
+
+.wp-content img,
+.wp-content figure img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--border);
+}
+
+.wp-content figure img {
+  margin: 0;
+}
+
+.wp-content>img {
+  margin: 1.4em 0;
+}
+
+.wp-content figcaption {
+  font-size: 0.85em;
+  color: var(--muted);
+  text-align: center;
+  margin-top: 0.5em;
+}
+
+.wp-content ul,
+.wp-content ol {
+  padding-left: 1.4em;
+}
+
+.wp-content ul {
+  list-style: disc;
+}
+
+.wp-content ol {
+  list-style: decimal;
+}
+
+.wp-content li {
+  margin: 0.4em 0;
+}
+
+.wp-content blockquote {
+  border-left: 3px solid var(--gold);
+  padding: 0.5em 1.1em;
+  margin: 1.5em 0;
+  background: rgba(229, 193, 88, 0.08);
+  color: #cfd6e6;
+  border-radius: 0 10px 10px 0;
+}
+
+.wp-content code {
+  background: var(--bg3);
+  padding: 0.15em 0.4em;
+  border-radius: 6px;
+  font-size: 0.9em;
+}
+
+.wp-content pre {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  padding: 1em 1.2em;
+  border-radius: 12px;
+  overflow-x: auto;
+  margin: 1.5em 0;
+}
+
+.wp-content pre code {
+  background: none;
+  padding: 0;
+}
+
+.wp-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+
+/* Sport page hero — moderate scale on large screens */
+.sport-hero-copy h1 {
+  font-family: var(--font-bebas);
+  font-size: clamp(36px, 5vw, 44px);
+  letter-spacing: 1px;
+  line-height: 0.92;
+  color: white;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .sport-hero-copy h1 {
+    font-size: clamp(40px, 4.5vw, 52px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .sport-hero-copy h1 {
+    font-size: clamp(44px, 3.8vw, 58px);
+  }
+}
+
+@media (min-width: 1280px) {
+  .sport-hero-copy h1 {
+    font-size: clamp(48px, 3.2vw, 64px);
+  }
+}
+
+@media (min-width: 1536px) {
+  .sport-hero-copy h1 {
+    font-size: 68px;
+  }
+}
+
+.sport-hero-copy p {
+  font-size: 15px;
+  line-height: 1.8;
+  font-weight: 300;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  max-width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sport-hero-copy p {
+    font-size: 16px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .sport-hero-copy p {
+    font-size: 17px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .sport-hero-copy p {
+    font-size: 18px;
+  }
+}
+
+.sport-hero-eyebrow {
+  font-size: 11px;
+}
+
+@media (min-width: 1280px) {
+  .sport-hero-eyebrow {
+    font-size: 12px;
+  }
+}
+
+/* ============================================================
+   MOBILE OPTIMIZATION — phones (<= 639px)
+   Section headings/intro copy align to the LEFT, while CTA
+   button groups stay CENTERED. Applies site-wide via the
+   shared .section-* classes; raw headings are handled per
+   component with `text-left sm:text-center`.
+   ============================================================ */
+@media (max-width: 639px) {
+
+  :root {
+    --page-gutter: 20px;
+  }
+
+  body {
+    line-height: 1.55;
+  }
+
+  main,
+  section,
+  article,
+  form,
+  fieldset {
+    min-width: 0;
+  }
+
+  h1,
+  h2,
+  h3,
+  p {
+    overflow-wrap: break-word;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  .section-title,
+  .section-desc {
+    text-align: left;
+  }
+
+  .section-title {
+    font-size: clamp(28px, 9vw, 40px);
+    line-height: 1.08;
+  }
+
+  .section-desc {
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .section-tag {
+    justify-content: flex-start;
+    letter-spacing: 2px;
+  }
+
+  .btn,
+  .btn-2 {
+    min-height: 48px;
+    width: 100%;
+    padding-inline: 20px;
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
+
+  .card-luxury:hover,
+  .card-glass:hover {
+    transform: none;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ============================================================
+   UNIFIED CONTENT WIDTH — equal left/right margins everywhere
+   ------------------------------------------------------------
+   The navbar, hero, every section and the footer share the same
+   horizontal gutter (px-[5%]) and the same maximum content
+   width, so the whole site lines up on the x-axis at every
+   screen size:
+     - below the cap, content fills ~90% of the viewport (so it
+       uses the space on 15"/16"+ laptops);
+     - on very wide monitors it stops growing at --site-content
+       and centres, keeping equal margins on both sides.
+
+   Most section wrappers already sit inside a px-[5%] section, so
+   normalising their assorted hard-coded max-widths to a single
+   value is all that's needed here. The navbar and hero are
+   switched to the same px-[5%] gutter in their components.
+   Tweak the single value below to widen/narrow the whole site.
+   ============================================================ */
+:root {
+  --site-content: 1800px;
+}
+
+.container,
+.max-w-7xl,
+.max-w-\[1440px\],
+.max-w-\[1400px\],
+.max-w-\[1200px\],
+.max-w-\[1180px\],
+.max-w-\[1100px\],
+.max-w-\[1000px\],
+.max-w-\[900px\] {
+  max-width: var(--site-content);
+  margin-inline: auto;
+}
