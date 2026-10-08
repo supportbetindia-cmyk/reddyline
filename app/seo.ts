@@ -1,7 +1,7 @@
 import type { Metadata, MetadataRoute } from "next";
 
 const siteName = "Reddy Line";
-const defaultSiteUrl = "https://www.reddyline.com";
+const defaultSiteUrl = "https://www.reddyline.co";
 const defaultImage = "/logo.png";
 
 type ChangeFrequency = NonNullable<MetadataRoute.Sitemap[number]["changeFrequency"]>;

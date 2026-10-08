@@ -9,7 +9,7 @@ export const HeroButtons: React.FC = () => {
     <div className="hero-buttons flex flex-wrap items-center gap-4 sm:gap-5 mb-8 sm:mb-10">
       {/* JOIN NOW - Primary Red Gradient CTA */}
       <a
-        href="https://www.1xplay.games/"
+        href="https://www.reddyline.co/"
         target="_blank"
         rel="noopener noreferrer"
         className="group relative inline-flex items-center justify-center text-decoration-none"
@@ -30,7 +30,7 @@ export const HeroButtons: React.FC = () => {
 
       {/* EXPLORE GAMES - Glassmorphic Gold Border CTA */}
       <a
-        href="https://www.1xplay.games/games/live-casino"
+        href="https://www.reddyline.co/"
         target="_blank"
         rel="noopener noreferrer"
         className="group relative inline-flex items-center justify-center text-decoration-none"

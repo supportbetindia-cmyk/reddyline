@@ -9,16 +9,16 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const games = [
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Slot Game", emoji: "💰", image: "/money_heist.png", badge: "hot" },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Adventure Slot", emoji: "🎰", image: "/casino-roulette-card-gold-v2.png", badge: null },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Crash Game", emoji: "✈️", image: "/aviator.jpg", badge: "new" },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Indian Favourite", emoji: "🃏", image: "/teen_pati.png", badge: "hot" },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Live Casino", emoji: "🪩", image: "/disco_club.png", badge: "new" },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Instant Win", emoji: "🎲", image: "/naughty_button.png", badge: null },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Crash Game", emoji: "🐔", image: "/chiken_road.jpeg", badge: "new" },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Slot Game", emoji: "💕", image: "/campus_crush.jpeg", badge: null },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Sports Slot", emoji: "🏎️", image: "/f1.png", badge: "hot" },
-  { name: "Play Now",href:"https://www.1xplay.games/", tag: "Crash Game", emoji: "📈", image: "/casino-rocket-card-gold-v2.png", badge: null },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Slot Game", emoji: "💰", image: "/money_heist.png", badge: "hot" },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Adventure Slot", emoji: "🎰", image: "/casino-roulette-card-gold-v2.png", badge: null },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Crash Game", emoji: "✈️", image: "/aviator.jpg", badge: "new" },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Indian Favourite", emoji: "🃏", image: "/teen_pati.png", badge: "hot" },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Live Casino", emoji: "🪩", image: "/disco_club.png", badge: "new" },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Instant Win", emoji: "🎲", image: "/naughty_button.png", badge: null },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Crash Game", emoji: "🐔", image: "/chiken_road.jpeg", badge: "new" },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Slot Game", emoji: "💕", image: "/campus_crush.jpeg", badge: null },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Sports Slot", emoji: "🏎️", image: "/f1.png", badge: "hot" },
+  { name: "Play Now",href:"https://www.reddyline.co/", tag: "Crash Game", emoji: "📈", image: "/casino-rocket-card-gold-v2.png", badge: null },
 ];
 
 export default function CasinoGames() {

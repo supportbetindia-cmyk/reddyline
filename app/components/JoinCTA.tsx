@@ -16,8 +16,8 @@ export default function JoinCTA() {
         </p>
 
         <div className="flex gap-4 justify-center flex-wrap mt-10">
-          <a href="https://www.1xplay.xyz/games" className="btn btn-gold btn-large">Start Playing Now</a>
-          <a href="https://www.1xplay.xyz/games/live-casino" className="btn btn-ghost btn-large">Explore Casino</a>
+          <a href="https://www.reddyline.co/" className="btn btn-gold btn-large">Start Playing Now</a>
+          <a href="https://www.reddyline.co/" className="btn btn-ghost btn-large">Explore Casino</a>
         </div>
       </div>
     </section>

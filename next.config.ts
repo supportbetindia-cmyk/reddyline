@@ -28,6 +28,12 @@ const nextConfig: NextConfig = {
             },
             {
               source: "/:path*",
+              has: [{ type: "host", value: "reddyline.co" }],
+              destination: "https://www.reddyline.co/:path*",
+              permanent: true,
+            },
+            {
+              source: "/:path*",
               has: [{ type: "host", value: "reddyline.com" }],
               destination: "https://www.reddyline.com/:path*",
               permanent: true,

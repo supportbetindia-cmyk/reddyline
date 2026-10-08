@@ -127,7 +127,7 @@ export default function CricketPage() {
                 transition={{ delay: 0.3 }}
                 className="flex gap-4 flex-wrap max-sm:justify-center"
               >
-                <a href="https://www.1xplay.games/" className="btn btn-gold btn-large gap-2">
+                <a href="https://www.reddyline.co/" className="btn btn-gold btn-large gap-2">
                   <span>Place Bets Now</span> <FaArrowRight size={12} />
                 </a>
                 <a href="https://wa.link/1xplayindia" className="btn btn-ghost btn-large">
@@ -467,7 +467,7 @@ export default function CricketPage() {
               Cricket continues to unite fans through unforgettable moments. We bring you closer to the action with live betting, online cricket IDs, and quick withdrawals.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a href="https://www.1xplay.games/" className="btn btn-gold btn-large">
+              <a href="https://www.reddyline.co/" className="btn btn-gold btn-large">
                 Register &amp; Join Now
               </a>
               <Link href="/games" className="btn btn-ghost btn-large">

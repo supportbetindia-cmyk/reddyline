@@ -53,7 +53,7 @@ export default function Home() {
               <h1>Every second<br /><em>changes the game.</em></h1>
               <p>Live cricket exchanges, 2,000+ premium casino games and instant 2-minute UPI payouts — move between sports and casino without ever breaking the action.</p>
               <div className={styles.heroActions}>
-                <a href="https://www.1xplay.games/" target="_blank" rel="noreferrer" className={styles.primaryCta}>Play now <ArrowRight size={17} /></a>
+                <a href="https://www.reddyline.co/" target="_blank" rel="noreferrer" className={styles.primaryCta}>Play now <ArrowRight size={17} /></a>
                 <Link href="/games" className={styles.ghostCta}>Explore games</Link>
               </div>
               <div className={styles.heroStats}>
@@ -155,7 +155,7 @@ export default function Home() {
                 <span><BadgeCheck /> Secure biometric access</span>
                 <span><BadgeCheck /> Optimized for every network</span>
               </div>
-              <a href="https://www.1xplay.games/apps" target="_blank" rel="noreferrer" className={styles.primaryCta}>Get the app <ArrowRight size={17} /></a>
+              <a href="https://www.reddyline.co/" target="_blank" rel="noreferrer" className={styles.primaryCta}>Get the app <ArrowRight size={17} /></a>
             </div>
             <div className={styles.appVisual} data-home-tilt>
               <Image src="/reddy-app-v2.png" alt="Reddy Line mobile sports platform" fill sizes="(max-width: 800px) 100vw, 50vw" />
@@ -193,7 +193,7 @@ export default function Home() {
             <span className={styles.kicker}>Your next move</span>
             <AnimatedHeading lines={["The arena is live.", "Step into it."]} highlight="live." />
             <p>Sports, casino and every big moment—ready when you are.</p>
-            <a href="https://www.1xplay.games/" target="_blank" rel="noreferrer" className={styles.primaryCta}>Create account <ArrowRight size={17} /></a>
+            <a href="https://www.reddyline.co/" target="_blank" rel="noreferrer" className={styles.primaryCta}>Create account <ArrowRight size={17} /></a>
             <small>18+ • Play responsibly</small>
           </section>
         </main>

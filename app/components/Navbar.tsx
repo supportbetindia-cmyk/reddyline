@@ -144,8 +144,8 @@ export default function Navbar() {
         <div className={clsx('flex', 'items-center','justify-end')}>
           {/* Desktop CTA */}
           <div className={clsx('hidden', 'lg:flex', 'gap-2', 'xl:gap-3', 'items-center')}>
-            <Link href="https://www.1xplay.games/" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-ghost', 'px-3', 'py-2', 'xl:px-5', 'xl:py-2.5', 'text-[11px]', 'xl:text-[13px]')}>Register</Link>
-            <Link href="https://www.1xplay.games/apps" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-gold', 'px-3', 'py-2', 'xl:px-5', 'xl:py-2.5', 'text-[11px]', 'xl:text-[13px]')}>Download</Link>
+            <Link href="https://www.reddyline.co/" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-ghost', 'px-3', 'py-2', 'xl:px-5', 'xl:py-2.5', 'text-[11px]', 'xl:text-[13px]')}>Register</Link>
+            <Link href="https://www.reddyline.co/" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-gold', 'px-3', 'py-2', 'xl:px-5', 'xl:py-2.5', 'text-[11px]', 'xl:text-[13px]')}>Download</Link>
           </div>
           
           {/* Mobile Toggle */}
@@ -231,8 +231,8 @@ export default function Navbar() {
             );
           })}
           <div className={clsx('flex', 'gap-3', 'mt-4')}>
-            <a href="https://www.1xplay.games/" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-ghost', 'flex-1', 'justify-center')}>Register</a>
-            <a href="https://www.1xplay.games/apps" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-gold', 'flex-1', 'justify-center')}>Download</a>
+            <a href="https://www.reddyline.co/" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-ghost', 'flex-1', 'justify-center')}>Register</a>
+            <a href="https://www.reddyline.co/" target="_blank" rel="noopener noreferrer" className={clsx('btn', 'btn-gold', 'flex-1', 'justify-center')}>Download</a>
           </div>
         </div>
       )}

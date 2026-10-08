@@ -34,25 +34,25 @@ const liveWinners = [
 
 
 const games: CasinoGameCard[] = [
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/money_heist.png", badge: "hot" },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino-roulette-card-gold-v2.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/aviator.jpg", badge: "new" },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/teen_pati.png", badge: "hot" },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/disco_club.png", badge: "new" },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/naughty_button.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/chiken_road.jpeg", badge: "new" },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/campus_crush.jpeg", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/f1.png", badge: "hot" },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino-rocket-card-gold-v2.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game1.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game2.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game3.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game4.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game5.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game6.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino-slot-card-gold-v2.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game8.png", badge: null },
-  { name: "Play Now", href: "https://www.1xplay.games/", image: "/casino_game9.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/money_heist.png", badge: "hot" },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino-roulette-card-gold-v2.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/aviator.jpg", badge: "new" },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/teen_pati.png", badge: "hot" },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/disco_club.png", badge: "new" },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/naughty_button.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/chiken_road.jpeg", badge: "new" },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/campus_crush.jpeg", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/f1.png", badge: "hot" },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino-rocket-card-gold-v2.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game1.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game2.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game3.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game4.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game5.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game6.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino-slot-card-gold-v2.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game8.png", badge: null },
+  { name: "Play Now", href: "https://www.reddyline.co/", image: "/casino_game9.png", badge: null },
 ];
 
 const gameTabs = [
@@ -188,7 +188,7 @@ export default function CasinoPage() {
                 transition={{ delay: 0.3 }}
                 className="flex gap-4 flex-wrap max-sm:justify-center"
               >
-                <a href="https://www.1xplay.games/games/live-casino" className="btn btn-gold btn-large gap-2">
+                <a href="https://www.reddyline.co/" className="btn btn-gold btn-large gap-2">
                   <span>Explore Games</span> <FaArrowRight size={12} />
                 </a>
                 <a href="https://wa.link/1xplayindia" className="btn btn-ghost btn-large">
