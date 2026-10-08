@@ -1,5 +1,5 @@
 import BlogView from "./BlogView";
-import { getPosts } from "../lib/wordpress";
+import { getPosts } from "../lib/blog";
 import { Suspense } from "react";
 
 // ISR on a Node server; baked at build time for static export.

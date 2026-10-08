@@ -3,7 +3,7 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { ArrowLeft, ArrowRight, Calendar, Clock, ChevronRight, Tag } from "lucide-react";
-import { getPost, getPosts, getAllSlugs, getUniqueCategories, blogCategoryHref, getCategoryImage, getPostDisplayImage, type BlogPost } from "../../lib/wordpress";
+import { getPost, getPosts, getAllSlugs, getUniqueCategories, blogCategoryHref, getCategoryImage, getPostDisplayImage, type BlogPost } from "../../lib/blog";
 import TableOfContents, { type TocItem } from "../TableOfContents";
 import ShareButtons from "../ShareButtons";
 

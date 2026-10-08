@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { validateContactForm, type ContactFormPayload } from "../../../lib/contactForm";
 
-export const dynamic = "force-dynamic";
-
 const SUBJECT_LABELS: Record<string, string> = {
   support: "Technical Support",
   "app-submission": "Submit an App",

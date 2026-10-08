@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowRight, Clock, Sparkles, Tag } from "lucide-react";
 import ScrollReveal from "../components/ScrollReveal";
-import { getUniqueCategories, type BlogPost } from "../lib/wordpress";
+import { getUniqueCategories, type BlogPost } from "../lib/blog";
 
 export default function BlogView({
   posts,
